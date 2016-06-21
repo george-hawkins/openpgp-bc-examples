@@ -11,7 +11,7 @@ See below for a walkthru of the steps taken to separate out the Bouncy Castle ex
 
 But first let's build and run the examples as found here.
 
-### Building and running
+### Building
 
 Build the examples using Maven and dump the classpath used by Maven to `classpath.txt` so we can use it to run the examples:
 ```bash
@@ -25,21 +25,24 @@ Our sample file for encryption and decryption is [`magna-carta-1215.txt`](magna-
 
 First let's create a key pair for ourselves (that's secured with the pass phrase 'SuperSecret'):
 ```bash
-$ java -classpath target/openpgp-bc-examples-0.1-SNAPSHOT.jar:$(< classpath.txt) org.bouncycastle.openpgp.examples.RSAKeyPairGenerator my-identifier SuperSecret
+$ java -classpath target/openpgp-bc-examples-0.1-SNAPSHOT.jar:$(< classpath.txt) \
+    org.bouncycastle.openpgp.examples.RSAKeyPairGenerator my-identifier SuperSecret
 ```
 
 This will generate the file `pub.bgp` for the public part of the pair and the file `secret.bgp` (protected by the pass phrase) that contains the secret part.
 
 Now let's encrypt the sample file - the result is found in `magna-carta-1215.txt.asc`:
 ```bash
-$ java -classpath target/openpgp-bc-examples-0.1-SNAPSHOT.jar:$(< classpath.txt) com.example.KeyBasedFileProcessor -e -ai magna-carta-1215.txt pub.bpg 
+$ java -classpath target/openpgp-bc-examples-0.1-SNAPSHOT.jar:$(< classpath.txt) \
+    com.example.KeyBasedFileProcessor -e -ai magna-carta-1215.txt pub.bpg 
 $ less magna-carta-1215.txt.asc 
 ```
 
 Now let's backup our original, decrypt our encrypted file and compare the original with the regenerated plaintext:
 ```bash
 $ mv magna-carta-1215.txt magna-carta-1215.txt.orig
-$ java -classpath target/openpgp-bc-examples-0.1-SNAPSHOT.jar:$(< classpath.txt) com.example.KeyBasedFileProcessor -d magna-carta-1215.txt.asc secret.bpg SuperSecret
+$ java -classpath target/openpgp-bc-examples-0.1-SNAPSHOT.jar:$(< classpath.txt) \
+    com.example.KeyBasedFileProcessor -d magna-carta-1215.txt.asc secret.bpg SuperSecret
 $ diff magna-carta-1215.txt magna-carta-1215.txt.orig 
 ```
 
