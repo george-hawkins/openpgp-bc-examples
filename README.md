@@ -45,6 +45,8 @@ $ diff magna-carta-1215.txt magna-carta-1215.txt.orig
 
 **Important:** here we've encrypted and decrypted our sample file with our own key pair. Usually you have a file that you need to send to someone - first you encrypt it with _their_ public key, send the encrypted file to them and then they decrypt it with _their_ secret key.
 
+For more details on these examples and the options they take see the classes [`RSAKeyPairGenerator`](src/main/java/com/example/RSAKeyPairGenerator.java) and [`KeyBasedFileProcessor`](src/main/java/com/example/KeyBasedFileProcessor.java).
+
 How this repository was created
 -------------------------------
 
