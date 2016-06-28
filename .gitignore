@@ -2,6 +2,6 @@ classpath.txt
 classpath.txt.orig
 magna-carta-1215.txt.asc
 magna-carta-1215.txt.orig
-pub.bpg
-secret.bpg
+pub.asc
+secret.asc
 target/
