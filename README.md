@@ -29,12 +29,12 @@ $ java -classpath target/openpgp-bc-examples-0.1-SNAPSHOT.jar:$(< classpath.txt)
     org.bouncycastle.openpgp.examples.RSAKeyPairGenerator my-identifier SuperSecret
 ```
 
-This will generate the file `pub.bgp` for the public part of the pair and the file `secret.bgp` (protected by the pass phrase) that contains the secret part.
+This will generate the file `pub.asc` for the public part of the pair and the file `secret.asc` (protected by the pass phrase) that contains the secret part.
 
 Now let's encrypt the sample file - the result is found in `magna-carta-1215.txt.asc`:
 ```bash
 $ java -classpath target/openpgp-bc-examples-0.1-SNAPSHOT.jar:$(< classpath.txt) \
-    com.example.KeyBasedFileProcessor -e -ai magna-carta-1215.txt pub.bpg 
+    com.example.KeyBasedFileProcessor -e -ai magna-carta-1215.txt pub.asc 
 $ less magna-carta-1215.txt.asc 
 ```
 
@@ -42,7 +42,7 @@ Now let's backup our original, decrypt our encrypted file and compare the origin
 ```bash
 $ mv magna-carta-1215.txt magna-carta-1215.txt.orig
 $ java -classpath target/openpgp-bc-examples-0.1-SNAPSHOT.jar:$(< classpath.txt) \
-    com.example.KeyBasedFileProcessor -d magna-carta-1215.txt.asc secret.bpg SuperSecret
+    com.example.KeyBasedFileProcessor -d magna-carta-1215.txt.asc secret.asc SuperSecret
 $ diff magna-carta-1215.txt magna-carta-1215.txt.orig 
 ```
 
