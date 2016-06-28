@@ -26,7 +26,7 @@ Our sample file for encryption and decryption is [`magna-carta-1215.txt`](magna-
 First let's create a key pair for ourselves (that's secured with the pass phrase 'SuperSecret'):
 ```bash
 $ java -classpath target/openpgp-bc-examples-0.1-SNAPSHOT.jar:$(< classpath.txt) \
-    org.bouncycastle.openpgp.examples.RSAKeyPairGenerator my-identifier SuperSecret
+    org.bouncycastle.openpgp.examples.RSAKeyPairGenerator -a my-identifier SuperSecret
 ```
 
 This will generate the file `pub.asc` for the public part of the pair and the file `secret.asc` (protected by the pass phrase) that contains the secret part.
